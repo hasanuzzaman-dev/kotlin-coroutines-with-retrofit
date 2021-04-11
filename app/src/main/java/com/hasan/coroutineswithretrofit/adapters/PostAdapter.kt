@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hasan.coroutineswithretrofit.databinding.PostItemLayoutBinding
 import com.hasan.coroutineswithretrofit.models.Post
 
-class PostAdapter(private val context: Context, private val postList: ArrayList<Post>) :
+class PostAdapter(private val context: Context, private var postList: ArrayList<Post>) :
     RecyclerView.Adapter<PostAdapter.ViewHolder>() {
 
 
@@ -38,4 +38,9 @@ class PostAdapter(private val context: Context, private val postList: ArrayList<
 
     inner class ViewHolder(val binding: PostItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root)
+
+    fun setPostData(postList: ArrayList<Post>){
+        this.postList = postList
+        notifyDataSetChanged()
+    }
 }
