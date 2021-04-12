@@ -1,6 +1,7 @@
 package com.hasan.coroutineswithretrofit.viewModels
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,9 +10,14 @@ import com.hasan.coroutineswithretrofit.repositories.PostRepository
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class PostViewModel(private val postRepository: PostRepository):ViewModel() {
+class PostViewModel :ViewModel() {
 
-    val postMutableLiveData : MutableLiveData<List<Post>> = MutableLiveData()
+
+    private val postRepository = PostRepository()
+    fun getPosts(): LiveData<List<Post>>{
+        return postRepository.getPosts()
+    }
+/*    val postMutableLiveData : MutableLiveData<List<Post>> = MutableLiveData()
 
     fun getPosts(){
         viewModelScope.launch {
@@ -23,5 +29,5 @@ class PostViewModel(private val postRepository: PostRepository):ViewModel() {
             }
 
         }
-    }
+    }*/
 }
